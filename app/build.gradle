@@ -21,6 +21,14 @@ android {
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
   }
+
+  viewBinding {
+    enabled = true
+  }
+
+  kotlinOptions {
+    jvmTarget = "1.8"
+  }
 }
 
 dependencies {
@@ -39,6 +47,9 @@ dependencies {
   implementation 'com.google.code.gson:gson:2.8.6'
   //Picasso
   implementation 'com.squareup.picasso:picasso:2.71828'
+  //Dagger
+  implementation "com.google.dagger:dagger:${library.dagger}"
+  kapt "com.google.dagger:dagger-compiler:${library.dagger}"
   //test
   testImplementation 'junit:junit:4.12'
   androidTestImplementation 'androidx.test.ext:junit:1.1.1'

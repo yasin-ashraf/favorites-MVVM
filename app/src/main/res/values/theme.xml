@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Licious" parent="Theme.Licious.Base"/>
+    
+    <style name="Theme.Licious.Base" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <item name="colorPrimary">@color/licious_black_96</item>
+        <item name="colorSecondary">@color/licious_black_26</item>
+        <item name="colorAccent">@color/licious_red</item>
+
+        <item name="android:colorBackground">@color/licious_black_96</item>
+        <item name="colorSurface">@color/licious_black_96</item>
+        <item name="colorPrimarySurface">@color/licious_black_96</item>
+        <item name="colorError">@color/licious_red</item>
+
+        <item name="colorOnPrimary">@color/licious_black_26</item>
+        <item name="colorOnSecondary">@color/licious_black_96</item>
+        <item name="colorOnBackground">@color/licious_black_26</item>
+        <item name="colorOnSurface">@color/licious_black_26</item>
+        <item name="colorOnError">@color/licious_black_96</item>
+
+    </style>
+    
+</resources>
