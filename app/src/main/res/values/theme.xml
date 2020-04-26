@@ -8,6 +8,7 @@
         <item name="colorPrimary">@color/licious_black_96</item>
         <item name="colorSecondary">@color/licious_black_26</item>
         <item name="colorAccent">@color/licious_red</item>
+        <item name="colorSecondaryVariant">@color/licious_black_42</item>
 
         <item name="android:colorBackground">@color/licious_black_96</item>
         <item name="colorSurface">@color/licious_black_96</item>

@@ -2,4 +2,5 @@
   <string name="app_name">Licious</string>
     <string name="all_available_slots">All Available Slots</string>
   <string name="today_in_minutes">Today in 120 minutes</string>
+    <string name="add_to_cart">Add to Cart</string>
 </resources>

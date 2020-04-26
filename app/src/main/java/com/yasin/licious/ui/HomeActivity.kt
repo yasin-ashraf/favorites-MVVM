@@ -1,13 +1,13 @@
-package com.yasin.licious
+package com.yasin.licious.ui
 
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import com.yasin.licious.R
 import com.yasin.licious.databinding.ActivityHomeBinding
 
 /**
