@@ -1,6 +1,8 @@
 package com.yasin.licious
 
 import android.os.Bundle
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -32,6 +34,21 @@ class HomeActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         binding.toolbar.setupWithNavController(navController, appBarConfiguration)
         addDestinationChangeListener()
+        insetWindow()
+        binding.ivBackButton.setOnClickListener { onBackPressed() }
+    }
+
+    private fun insetWindow() {
+        binding.root.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION)
+
+        binding.root.setOnApplyWindowInsetsListener { _, windowInsets ->
+
+            binding.toolbar.setPadding(0, windowInsets.systemWindowInsetTop, 0, 0)
+
+            return@setOnApplyWindowInsetsListener windowInsets
+        }
     }
 
     /**

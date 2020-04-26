@@ -9,7 +9,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
         android:background="?attr/colorOnPrimary"
         android:gravity="center"
         app:contentInsetStart="0dp"
@@ -20,7 +20,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingVertical="5dp"
+            android:clipToPadding="false">
 
             <ImageView
                 android:id="@+id/iv_back_button"
@@ -28,13 +30,16 @@
                 android:layout_height="match_parent"
                 android:padding="15dp"
                 android:tint="?attr/colorPrimary"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
                 app:srcCompat="@drawable/ic_back"
                 app:layout_constraintStart_toStartOf="parent"/>
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="1.6"
                 android:gravity="center"
                 android:paddingHorizontal="70dp"
@@ -42,6 +47,8 @@
                 android:textColor="?attr/colorPrimary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 tools:text="Favourite Item" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
