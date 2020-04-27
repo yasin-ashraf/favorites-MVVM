@@ -1,6 +1,8 @@
 package com.yasin.licious.dagger.modules
 
+import android.content.Context
 import com.yasin.licious.dagger.AppScope
+import com.yasin.licious.dagger.ApplicationContext
 import com.yasin.licious.network.MockInterceptor
 
 import java.util.concurrent.TimeUnit
@@ -18,8 +20,8 @@ class NetworkModule {
 
     @Provides
     @AppScope
-    fun loggingInterceptor(): MockInterceptor {
-        return MockInterceptor()
+    fun loggingInterceptor(@ApplicationContext context : Context): MockInterceptor {
+        return MockInterceptor(context)
     }
 
 

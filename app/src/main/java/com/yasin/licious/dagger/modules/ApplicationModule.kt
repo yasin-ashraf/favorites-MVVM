@@ -3,6 +3,7 @@ package com.yasin.licious.dagger.modules
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.yasin.licious.dagger.AppScope
+import com.yasin.licious.network.IntegerTypeAdapter
 import com.yasin.licious.network.LiciousServices
 import dagger.Module
 import dagger.Provides
@@ -24,6 +25,8 @@ class ApplicationModule {
     @AppScope
     fun gson(): Gson {
         val gsonBuilder = GsonBuilder()
+            .registerTypeAdapter(Int::class.java, IntegerTypeAdapter())
+            .registerTypeAdapter(Integer::class.java,  IntegerTypeAdapter())
             .setDateFormat("yyyy-MM-dd")
         return gsonBuilder.create()
     }

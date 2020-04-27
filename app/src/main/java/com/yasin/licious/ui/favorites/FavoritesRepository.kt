@@ -1,5 +1,6 @@
 package com.yasin.licious.ui.favorites
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.yasin.licious.data.model.FavoritesScreenResponse
@@ -29,12 +30,14 @@ class FavoritesRepository @Inject constructor(
                     favoriteScreenResponse.value =
                         ViewState.Success(response.body() ?: FavoritesScreenResponse(null))
                 }else {
+                    Log.e("Parse Error",response.errorBody().toString())
                     favoriteScreenResponse.value =
                         ViewState.Error("Unknown error from Server!")
                 }
             }
 
             override fun onFailure(call: Call<FavoritesScreenResponse>, t: Throwable) {
+                Log.e("Network Error",t.toString())
                 favoriteScreenResponse.value =
                     ViewState.Error("Network error!")
             }

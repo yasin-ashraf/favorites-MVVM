@@ -14,20 +14,21 @@ import javax.inject.Inject
  * Created by Yasin on 27/4/20.
  */
 class FavoritesViewModel @Inject constructor(
-    private val favoritesRepository: FavoritesRepository ) : ViewModel(){
+    private val favoritesRepository: FavoritesRepository
+) : ViewModel() {
 
-    private val forceRefresh : MutableLiveData<Boolean> = MutableLiveData(false)
-    private val _favourites : MutableLiveData<ViewState<List<UiProduct>>> = MutableLiveData()
-    val favorites : LiveData<ViewState<List<UiProduct>>> = Transformations.map(
+    private val forceRefresh: MutableLiveData<Boolean> = MutableLiveData(false)
+    private val _favourites: MutableLiveData<ViewState<List<UiProduct>>> = MutableLiveData()
+    val favorites: LiveData<ViewState<List<UiProduct>>> = Transformations.map(
         favoritesRepository.getFavoritesScreenResponse()
     ) {
         manageFavoritesList(it)
     }
 
-    private fun manageFavoritesList(it: ViewState<FavoritesScreenResponse>): ViewState<List<UiProduct>>{
-        when(it) {
+    private fun manageFavoritesList(it: ViewState<FavoritesScreenResponse>): ViewState<List<UiProduct>> {
+        when (it) {
             is ViewState.Success -> {
-                val productsList : MutableList<UiProduct> = mutableListOf()
+                val productsList: MutableList<UiProduct> = mutableListOf()
                 it.data.favoritesData?.responseProducts?.forEach {
                     productsList.add(it.convertToUiProduct())
                 }
@@ -43,7 +44,7 @@ class FavoritesViewModel @Inject constructor(
         }
     }
 
-    private fun ResponseProduct.convertToUiProduct() : UiProduct {
+    private fun ResponseProduct.convertToUiProduct(): UiProduct {
         return UiProduct(
             productId = this.productMaster.productId,
             productName = this.productMaster.prName,

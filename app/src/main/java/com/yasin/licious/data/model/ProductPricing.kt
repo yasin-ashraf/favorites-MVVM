@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class ProductPricing(
     @SerializedName("sgst")
-    val sgst: Int = 0,
+    val sgst: Double = 0.0,
     @SerializedName("unit_gram")
     val unitGram: Int = 0,
     @SerializedName("hub_id")
@@ -14,11 +14,11 @@ data class ProductPricing(
     @SerializedName("product_id")
     val productId: String = "",
     @SerializedName("base_price")
-    val basePrice: Int = 0,
+    val basePrice: Double = 0.0,
     @SerializedName("created_at")
     val createdAt: String? = "",
     @SerializedName("cgst")
-    val cgst: Int = 0,
+    val cgst: Double = 0.0,
     @SerializedName("price_gram")
     val priceGram: Double = 0.0,
     @SerializedName("city_id")
