@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.yasin.licious.data.model.FavoritesScreenResponse
 import com.yasin.licious.network.LiciousServices
-import com.yasin.licious.network.ViewState
+import com.yasin.licious.network.NetworkState
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,8 +18,8 @@ class FavoritesRepository @Inject constructor(
     private val liciousServices: LiciousServices
 ) {
 
-    fun getFavoritesScreenResponse(): LiveData<ViewState<FavoritesScreenResponse>> {
-        val favoriteScreenResponse: MutableLiveData<ViewState<FavoritesScreenResponse>> =
+    fun getFavoritesScreenResponse(): LiveData<NetworkState<FavoritesScreenResponse>> {
+        val favoriteScreenResponse: MutableLiveData<NetworkState<FavoritesScreenResponse>> =
             MutableLiveData()
         liciousServices.getCurrent().enqueue(object : Callback<FavoritesScreenResponse> {
             override fun onResponse(
@@ -28,18 +28,18 @@ class FavoritesRepository @Inject constructor(
             ) {
                 if (response.isSuccessful && response.body() != null) {
                     favoriteScreenResponse.value =
-                        ViewState.Success(response.body() ?: FavoritesScreenResponse(null))
+                        NetworkState.Success(response.body() ?: FavoritesScreenResponse(null))
                 }else {
                     Log.e("Parse Error",response.errorBody().toString())
                     favoriteScreenResponse.value =
-                        ViewState.Error("Unknown error from Server!")
+                        NetworkState.Error("Unknown error from Server!")
                 }
             }
 
             override fun onFailure(call: Call<FavoritesScreenResponse>, t: Throwable) {
                 Log.e("Network Error",t.toString())
                 favoriteScreenResponse.value =
-                    ViewState.Error("Network error!")
+                    NetworkState.Error("Network error!")
             }
         })
         return favoriteScreenResponse

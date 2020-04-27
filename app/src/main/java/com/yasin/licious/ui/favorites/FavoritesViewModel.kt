@@ -1,13 +1,12 @@
 package com.yasin.licious.ui.favorites
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.yasin.licious.data.model.FavoritesScreenResponse
 import com.yasin.licious.data.model.ResponseProduct
 import com.yasin.licious.data.model.UiProduct
-import com.yasin.licious.network.ViewState
+import com.yasin.licious.network.NetworkState
 import javax.inject.Inject
 
 /**
@@ -17,29 +16,33 @@ class FavoritesViewModel @Inject constructor(
     private val favoritesRepository: FavoritesRepository
 ) : ViewModel() {
 
-    private val forceRefresh: MutableLiveData<Boolean> = MutableLiveData(false)
-    private val _favourites: MutableLiveData<ViewState<List<UiProduct>>> = MutableLiveData()
-    val favorites: LiveData<ViewState<List<UiProduct>>> = Transformations.map(
+    val favoritesViewState: LiveData<FavoriteViewState> = Transformations.map(
         favoritesRepository.getFavoritesScreenResponse()
     ) {
-        manageFavoritesList(it)
+        composeViewState(it)
     }
 
-    private fun manageFavoritesList(it: ViewState<FavoritesScreenResponse>): ViewState<List<UiProduct>> {
+    private fun composeViewState(it: NetworkState<FavoritesScreenResponse>): FavoriteViewState {
         when (it) {
-            is ViewState.Success -> {
-                val productsList: MutableList<UiProduct> = mutableListOf()
+            is NetworkState.Success -> {
+                val allFavorites: MutableList<UiProduct> = mutableListOf()
                 it.data.favoritesData?.responseProducts?.forEach {
-                    productsList.add(it.convertToUiProduct())
+                    allFavorites.add(it.convertToUiProduct())
                 }
-                return ViewState.Success(productsList)
+                return FavoriteViewState.Success(
+                    filters = it.data.favoritesData?.filters ?: listOf(),
+                    favorites = allFavorites,
+                    badge = it.data.favoritesData?.infoBadge ?: "Items",
+                    infoMessage = it.data.favoritesData?.infoMessage ?: "Your favorite Items",
+                    screenTitle = it.data.favoritesData?.title ?: "Favorite List"
+                )
             }
 
-            is ViewState.Error -> {
-                return ViewState.Error(it.message)
+            is NetworkState.Error -> {
+                return FavoriteViewState.Error(it.message)
             }
-            is ViewState.Loading -> {
-                return ViewState.Loading
+            is NetworkState.Loading -> {
+                return FavoriteViewState.Loading
             }
         }
     }

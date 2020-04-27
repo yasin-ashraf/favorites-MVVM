@@ -4,14 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.squareup.picasso.Picasso
 import com.yasin.licious.databinding.ScreenFavouritesBinding
 import com.yasin.licious.getAppComponent
-import com.yasin.licious.network.ViewState
+import com.yasin.licious.network.NetworkState
 import javax.inject.Inject
 import kotlin.LazyThreadSafetyMode.NONE
 
@@ -41,19 +41,31 @@ class FavouritesScreen :  Fragment() {
     }
 
     private fun observeViewState() {
-        favoritesViewModel.favorites.observe(this, Observer {
+        observeFavorites()
+    }
+
+    private fun observeFavorites() {
+        favoritesViewModel.favoritesViewState.observe(this, Observer {
             when(it) {
-                is ViewState.Loading -> {
-                    Toast.makeText(requireContext(),"Loading..",Toast.LENGTH_SHORT).show()
+                is FavoriteViewState.Loading -> {
+                    //show loading state
                 }
-                is ViewState.Success -> {
-                    favoritesAdapter.submitList(it.data)
+                is FavoriteViewState.Success -> {
+                    renderScreen(it)
                 }
-                is ViewState.Error ->{
-                    Toast.makeText(requireContext(),"error!!",Toast.LENGTH_SHORT).show()
+                is FavoriteViewState.Error ->{
+                    //show error state
                 }
             }
         })
+    }
+
+    private fun renderScreen(viewState: FavoriteViewState.Success) {
+        binding.tvInfoMessage.text = viewState.infoMessage
+        binding.tvInfoBadge.text = viewState.badge
+        favoritesAdapter.submitList(viewState.favorites)
+        //set screen title via navController
+        findNavController().currentDestination?.label = viewState.screenTitle
     }
 
     override fun onCreateView(

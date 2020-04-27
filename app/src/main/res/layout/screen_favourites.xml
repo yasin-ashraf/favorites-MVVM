@@ -72,7 +72,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
-                android:text="Your Favourite Items"
+                tools:text="Your Favourite Items"
                 android:textColor="?attr/colorOnSurface"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 app:layout_constraintEnd_toStartOf="@id/tv_info_badge"
@@ -81,13 +81,14 @@
 
             <TextView
                 android:id="@+id/tv_info_badge"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="(17 Items)"
+                tools:text="(17 Items)"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:textColor="?attr/colorSecondaryVariant"
                 app:layout_constraintBottom_toBottomOf="@id/tv_info_message"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_info_message"
                 app:layout_constraintTop_toTopOf="@id/tv_info_message" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
