@@ -2,7 +2,7 @@ package com.yasin.licious.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class FavoritesScreen(
+data class FavoritesScreenResponse(
     @SerializedName("data")
     val favoritesData: FavoritesData,
     @SerializedName("statusMessage")
