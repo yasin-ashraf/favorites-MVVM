@@ -40,7 +40,7 @@
                 app:strokeColor="?attr/colorOnPrimary" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_schedule_meeting"
+                android:id="@+id/button_express"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

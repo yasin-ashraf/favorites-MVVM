@@ -1,6 +1,7 @@
 package com.yasin.licious.ui.favorites
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.yasin.licious.data.model.FavoritesScreenResponse
@@ -16,10 +17,19 @@ class FavoritesViewModel @Inject constructor(
     private val favoritesRepository: FavoritesRepository
 ) : ViewModel() {
 
+    private val forceRefresh: MutableLiveData<Boolean> = MutableLiveData()
+    private val networkResponse: LiveData<NetworkState<FavoritesScreenResponse>> =
+        Transformations.switchMap(forceRefresh) {
+            favoritesRepository.getFavoritesScreenResponse()
+        }
     val favoritesViewState: LiveData<FavoriteViewState> = Transformations.map(
-        favoritesRepository.getFavoritesScreenResponse()
+        networkResponse
     ) {
         composeViewState(it)
+    }
+
+    init {
+        forceRefresh.value = true
     }
 
     private fun composeViewState(it: NetworkState<FavoritesScreenResponse>): FavoriteViewState {
@@ -45,6 +55,14 @@ class FavoritesViewModel @Inject constructor(
                 return FavoriteViewState.Loading
             }
         }
+    }
+
+    /**
+     * for force refreshing
+     * direct transformation map wouldn't let us force-refresh. Hence networkResponse
+     **/
+    fun forceRefresh(refresh: Boolean) {
+        forceRefresh.value = refresh
     }
 
     private fun ResponseProduct.convertToUiProduct(): UiProduct {

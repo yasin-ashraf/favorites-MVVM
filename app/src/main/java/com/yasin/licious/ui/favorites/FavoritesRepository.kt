@@ -21,6 +21,7 @@ class FavoritesRepository @Inject constructor(
     fun getFavoritesScreenResponse(): LiveData<NetworkState<FavoritesScreenResponse>> {
         val favoriteScreenResponse: MutableLiveData<NetworkState<FavoritesScreenResponse>> =
             MutableLiveData()
+        favoriteScreenResponse.value = NetworkState.Loading
         liciousServices.getCurrent().enqueue(object : Callback<FavoritesScreenResponse> {
             override fun onResponse(
                 call: Call<FavoritesScreenResponse>,
