@@ -2,6 +2,7 @@ package com.yasin.licious
 
 import android.app.Application
 import android.content.Context
+import androidx.fragment.app.Fragment
 import com.yasin.licious.dagger.DaggerMainComponent
 import com.yasin.licious.dagger.MainComponent
 
@@ -10,12 +11,18 @@ import com.yasin.licious.dagger.MainComponent
  */
 class Licious : Application() {
 
-    private val appComponent : MainComponent by lazy {
+    val appComponent : MainComponent by lazy {
         DaggerMainComponent
             .builder()
             .context(this.applicationContext)
             .build()
     }
 
-    fun Context.getAppComponent() : MainComponent = appComponent
+    companion object {
+        fun getApp(context: Context) : Licious {
+            return context.applicationContext as Licious
+        }
+    }
 }
+
+fun Fragment.getAppComponent() : MainComponent = Licious.getApp(this.requireContext()).appComponent

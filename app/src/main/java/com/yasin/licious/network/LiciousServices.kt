@@ -1,6 +1,7 @@
 package com.yasin.licious.network
 
 import com.yasin.licious.data.model.FavoritesScreenResponse
+import retrofit2.Call
 import retrofit2.http.GET
 
 /**
@@ -9,5 +10,5 @@ import retrofit2.http.GET
 interface LiciousServices {
 
     @GET("/favorites")
-    fun getCurrent(): FavoritesScreenResponse
+    fun getCurrent(): Call<FavoritesScreenResponse>
 }

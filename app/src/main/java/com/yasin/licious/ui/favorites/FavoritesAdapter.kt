@@ -1,4 +1,4 @@
-package com.yasin.licious.ui
+package com.yasin.licious.ui.favorites
 
 import android.graphics.Paint
 import android.view.LayoutInflater
@@ -14,7 +14,9 @@ import kotlinx.android.synthetic.main.favorite_list_item.view.*
 /**
  * Created by Yasin on 27/4/20.
  */
-class FavoritesAdapter : ListAdapter<UiProduct, ProductViewHolder>(ProductsItemCallback()) {
+class FavoritesAdapter : ListAdapter<UiProduct, ProductViewHolder>(
+    ProductsItemCallback()
+) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         return ProductViewHolder(
@@ -27,13 +29,8 @@ class FavoritesAdapter : ListAdapter<UiProduct, ProductViewHolder>(ProductsItemC
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        holder.itemView.tv_actual_price.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-//        val product = currentList[position]
-//        holder.bind(product)
-    }
-
-    override fun getItemCount(): Int {
-        return 40
+        val product = currentList[position]
+        holder.bind(product)
     }
 
 }

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/favouritesScreen"
-        android:name="com.yasin.licious.ui.FavouritesScreen"
+        android:name="com.yasin.licious.ui.favorites.FavouritesScreen"
         android:label="Favourite Items"
         tools:layout="@layout/screen_favourites"/>
 </navigation>

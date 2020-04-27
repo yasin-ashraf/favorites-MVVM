@@ -5,6 +5,7 @@ import com.yasin.licious.dagger.modules.ApplicationModule
 import com.yasin.licious.dagger.modules.ContextModule
 import com.yasin.licious.dagger.modules.NetworkModule
 import com.yasin.licious.dagger.modules.RetrofitModule
+import com.yasin.licious.ui.favorites.FavouritesScreen
 import dagger.BindsInstance
 import dagger.Component
 
@@ -15,6 +16,7 @@ import dagger.Component
 @AppScope
 @Component(modules = [ApplicationModule::class, ContextModule::class, NetworkModule::class, RetrofitModule::class])
 interface MainComponent {
+    fun injectFavoritesScreen(favouritesScreen: FavouritesScreen)
 
     @Component.Builder
     interface Builder {
