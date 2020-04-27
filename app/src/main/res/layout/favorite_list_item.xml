@@ -15,7 +15,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
+        android:src="@drawable/curry_cut"
+         />
 
     <TextView
         android:id="@+id/tv_product_name"
@@ -29,7 +30,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_item"
-        tools:text="Chicken Tenders (Boneless)" />
+        android:text="Chicken Tenders (Boneless)" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_centre"
@@ -51,7 +52,7 @@
         app:layout_constraintEnd_toEndOf="@id/guideline_centre"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/button_add_to_cart"
-        tools:text="Net wt. 500gm" />
+        android:text="Net wt. 500gm" />
 
     <TextView
         android:id="@+id/tv_offer_price"
@@ -67,7 +68,7 @@
         app:autoSizeTextType="uniform"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/button_add_to_cart"
-        tools:text="\u20B9 260" />
+        android:text="\u20B9 260" />
 
     <TextView
         android:id="@+id/tv_actual_price"
@@ -83,7 +84,7 @@
         app:layout_constraintStart_toEndOf="@id/tv_offer_price"
         app:layout_constraintEnd_toEndOf="@id/guideline_centre"
         app:layout_constraintBottom_toBottomOf="@id/button_add_to_cart"
-        tools:text="\u20B9 260" />
+        android:text="\u20B9 260" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_add_to_cart"

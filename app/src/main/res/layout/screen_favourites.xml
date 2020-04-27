@@ -1,109 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/margin_start_guideline"
-        android:layout_width="1dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="10dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/margin_end_guideline"
-        android:layout_width="1dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="10dp" />
-
-    <LinearLayout
-        android:id="@+id/button_layout"
-        android:layout_width="0dp"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        app:layout_constraintEnd_toEndOf="@id/margin_end_guideline"
-        app:layout_constraintStart_toStartOf="@id/margin_start_guideline"
-        app:layout_constraintTop_toTopOf="parent">
+        app:elevation="0dp">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_all_slots"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="6dp"
+        <LinearLayout
+            android:id="@+id/button_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            app:layout_scrollFlags="snap"
+            android:weightSum="2">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_all_slots"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:elevation="0dp"
+                android:text="@string/all_available_slots"
+                android:textAllCaps="false"
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="12sp"
+                app:cornerRadius="4dp"
+                app:rippleColor="?attr/colorOnPrimary"
+                app:strokeColor="?attr/colorOnPrimary" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_schedule_meeting"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:elevation="0dp"
+                android:text="@string/today_in_minutes"
+                android:textAllCaps="false"
+                android:textColor="?attr/colorOnSecondary"
+                android:textSize="12sp"
+                app:backgroundTint="?attr/colorSecondary"
+                app:cornerRadius="4dp"
+                app:strokeColor="?attr/colorOnPrimary" />
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_weight="1"
-            android:elevation="0dp"
-            android:text="@string/all_available_slots"
-            android:textAllCaps="false"
-            android:textColor="?attr/colorOnPrimary"
-            android:textSize="12sp"
-            app:cornerRadius="4dp"
-            app:rippleColor="?attr/colorOnPrimary"
-            app:strokeColor="?attr/colorOnPrimary" />
+            android:layout_marginBottom="10dp"
+            app:layout_scrollFlags="scroll">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_schedule_meeting"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="6dp"
-            android:layout_marginEnd="10dp"
-            android:layout_weight="1"
-            android:elevation="0dp"
-            android:text="@string/today_in_minutes"
-            android:textAllCaps="false"
-            android:textColor="?attr/colorOnSecondary"
-            android:textSize="12sp"
-            app:backgroundTint="?attr/colorSecondary"
-            app:cornerRadius="4dp"
-            app:strokeColor="?attr/colorOnPrimary" />
+            <TextView
+                android:id="@+id/tv_info_message"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:text="Your Favourite Items"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                app:layout_constraintEnd_toStartOf="@id/tv_info_badge"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tv_info_badge"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="(17 Items)"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:textColor="?attr/colorSecondaryVariant"
+                app:layout_constraintBottom_toBottomOf="@id/tv_info_message"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_info_message" />
 
-    <TextView
-        android:id="@+id/tv_info_message"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-        app:layout_constraintEnd_toStartOf="@id/tv_info_badge"
-        app:layout_constraintStart_toStartOf="@id/margin_start_guideline"
-        app:layout_constraintTop_toBottomOf="@id/button_layout"
-        tools:text="Your Favourite Items" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/tv_info_badge"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-        android:textColor="?attr/colorSecondaryVariant"
-        app:layout_constraintBottom_toBottomOf="@id/tv_info_message"
-        app:layout_constraintEnd_toEndOf="@id/margin_end_guideline"
-        app:layout_constraintTop_toTopOf="@id/tv_info_message"
-        tools:text="(17 Items)" />
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:paddingVertical="5dp"
-        android:paddingHorizontal="5dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_info_badge"
-        app:spanCount="2"
+        android:id="@+id/rv_favorites"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         android:orientation="vertical"
+        android:paddingHorizontal="5dp"
+        android:paddingVertical="5dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        app:spanCount="2"
         tools:itemCount="10"
-        tools:listitem="@layout/favorite_list_item"/>
+        tools:listitem="@layout/favorite_list_item" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
