@@ -6,5 +6,10 @@ package com.yasin.licious.data.model
 data class UiProduct(
     val productId : String,
     val productName : String,
-    val uom : String
+    val uom : String,
+    val netWt : String,
+    val actualPrice : Double,
+    val offerPrice : Double,
+    val image : String,
+    val deliveryType : String
 )

@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.squareup.picasso.Picasso
 import com.yasin.licious.databinding.ScreenFavouritesBinding
 import com.yasin.licious.getAppComponent
 import com.yasin.licious.network.ViewState
@@ -20,11 +21,12 @@ import kotlin.LazyThreadSafetyMode.NONE
  */
 class FavouritesScreen :  Fragment() {
 
+    @Inject lateinit var picasso: Picasso
     @Inject lateinit var favoritesViewModelFactory: FavoritesViewModelFactory
     private lateinit var favoritesViewModel: FavoritesViewModel
     private lateinit var binding : ScreenFavouritesBinding
     private val favoritesAdapter : FavoritesAdapter by lazy(NONE) {
-        FavoritesAdapter()
+        FavoritesAdapter(picasso)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

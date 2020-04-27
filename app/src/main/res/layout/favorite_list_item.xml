@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/curry_cut"
+        tools:src="@tools:sample/avatars"
          />
 
     <TextView
@@ -30,7 +30,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_item"
-        android:text="Chicken Tenders (Boneless)" />
+        tools:text="Chicken Tenders (Boneless)" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_centre"
@@ -49,10 +49,11 @@
         app:autoSizeMaxTextSize="18sp"
         app:autoSizeMinTextSize="10sp"
         app:autoSizeTextType="uniform"
+        android:textColor="?attr/colorSecondaryVariant"
         app:layout_constraintEnd_toEndOf="@id/guideline_centre"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/button_add_to_cart"
-        android:text="Net wt. 500gm" />
+        tools:text="Net wt. 500gm" />
 
     <TextView
         android:id="@+id/tv_offer_price"
@@ -68,7 +69,7 @@
         app:autoSizeTextType="uniform"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/button_add_to_cart"
-        android:text="\u20B9 260" />
+        tools:text="\u20B9 260" />
 
     <TextView
         android:id="@+id/tv_actual_price"
@@ -81,10 +82,11 @@
         app:autoSizeMaxTextSize="18sp"
         app:autoSizeMinTextSize="10sp"
         app:autoSizeTextType="uniform"
+        android:textColor="?attr/colorSecondaryVariant"
         app:layout_constraintStart_toEndOf="@id/tv_offer_price"
         app:layout_constraintEnd_toEndOf="@id/guideline_centre"
         app:layout_constraintBottom_toBottomOf="@id/button_add_to_cart"
-        android:text="\u20B9 260" />
+        tools:text="\u20B9 260" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_add_to_cart"

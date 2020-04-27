@@ -48,7 +48,12 @@ class FavoritesViewModel @Inject constructor(
         return UiProduct(
             productId = this.productMaster.productId,
             productName = this.productMaster.prName,
-            uom = this.productMaster.uom
+            uom = this.productMaster.uom,
+            actualPrice = this.productPricing.basePrice,
+            offerPrice = 0.0,
+            image = this.productMerchantdising.prImage,
+            deliveryType = this.productMerchantdising.productDeliveryType,
+            netWt = this.productMaster.net
         )
     }
 }
