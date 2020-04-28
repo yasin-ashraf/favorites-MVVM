@@ -120,7 +120,8 @@ class FavouritesScreen : Fragment() {
     private fun insetWindow() {
         binding.root.setOnApplyWindowInsetsListener { _, windowInsets ->
 
-            binding.rvFavorites.setPadding(0, 0, 0, windowInsets.systemWindowInsetBottom)
+            binding.rvFavorites.setPadding(windowInsets.systemWindowInsetLeft, 0, windowInsets.systemWindowInsetRight, windowInsets.systemWindowInsetBottom)
+            binding.appBar.setPadding(windowInsets.systemWindowInsetLeft,0,windowInsets.systemWindowInsetRight,0)
 
             return@setOnApplyWindowInsetsListener windowInsets
         }

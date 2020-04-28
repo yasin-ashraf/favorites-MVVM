@@ -45,7 +45,7 @@ class HomeActivity : AppCompatActivity() {
 
         binding.root.setOnApplyWindowInsetsListener { _, windowInsets ->
 
-            binding.toolbar.setPadding(0, windowInsets.systemWindowInsetTop, 0, 0)
+            binding.toolbar.setPadding(windowInsets.systemWindowInsetLeft, windowInsets.systemWindowInsetTop, windowInsets.systemWindowInsetRight, 0)
 
             return@setOnApplyWindowInsetsListener windowInsets
         }
