@@ -30,15 +30,15 @@ class FavoritesRepository @Inject constructor(
                 if (response.isSuccessful && response.body() != null) {
                     favoriteScreenResponse.value =
                         NetworkState.Success(response.body() ?: FavoritesScreenResponse(null))
-                }else {
-                    Log.e("Parse Error",response.errorBody().toString())
+                } else {
+                    Log.e("Parse Error", response.errorBody().toString())
                     favoriteScreenResponse.value =
                         NetworkState.Error("Unknown error from Server!")
                 }
             }
 
             override fun onFailure(call: Call<FavoritesScreenResponse>, t: Throwable) {
-                Log.e("Network Error",t.toString())
+                Log.e("Network Error", t.toString())
                 favoriteScreenResponse.value =
                     NetworkState.Error("Network error!")
             }

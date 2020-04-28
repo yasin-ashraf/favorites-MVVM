@@ -20,33 +20,33 @@ class MockInterceptor @Inject constructor(
     override fun intercept(chain: Interceptor.Chain): Response {
         val url = chain.request().url
         when (url.encodedPath) {
-             "/favorites" -> {
-                 val response: String = loadJsonResponseFromAsset(context)
-                 return Response.Builder()
-                     .code(200)
-                     .message(response)
-                     .request(chain.request())
-                     .protocol(Protocol.HTTP_1_1)
-                     .body(response.toResponseBody("application/json".toMediaTypeOrNull()))
-                     .addHeader("content-type", "application/json")
-                     .build()
-             }
+            "/favorites" -> {
+                val response: String = loadJsonResponseFromAsset(context)
+                return Response.Builder()
+                    .code(200)
+                    .message(response)
+                    .request(chain.request())
+                    .protocol(Protocol.HTTP_1_1)
+                    .body(response.toResponseBody("application/json".toMediaTypeOrNull()))
+                    .addHeader("content-type", "application/json")
+                    .build()
+            }
 
             else -> error("invalid url path")
-         }
+        }
     }
 }
 
-private fun loadJsonResponseFromAsset(context: Context) : String {
-    var json : String? = null
+private fun loadJsonResponseFromAsset(context: Context): String {
+    var json: String? = null
     try {
-        val inputStream : InputStream = context.assets.open("Response.json")
-        val size : Int = inputStream.available()
+        val inputStream: InputStream = context.assets.open("Response.json")
+        val size: Int = inputStream.available()
         val buffer = ByteArray(size)
         inputStream.read(buffer)
         inputStream.close()
         json = String(buffer)
-    } catch (ioException : IOException) {
+    } catch (ioException: IOException) {
         ioException.printStackTrace()
     }
     return json ?: ""

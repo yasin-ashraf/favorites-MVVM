@@ -26,7 +26,7 @@ class ApplicationModule {
     fun gson(): Gson {
         val gsonBuilder = GsonBuilder()
             .registerTypeAdapter(Int::class.java, IntegerTypeAdapter())
-            .registerTypeAdapter(Integer::class.java,  IntegerTypeAdapter())
+            .registerTypeAdapter(Integer::class.java, IntegerTypeAdapter())
             .setDateFormat("yyyy-MM-dd")
         return gsonBuilder.create()
     }

@@ -14,6 +14,6 @@ abstract class ContextModule {
 
     @AppScope
     @Binds
-    abstract fun provideContext(@ApplicationContext context: Context) : Context
+    abstract fun provideContext(@ApplicationContext context: Context): Context
 
 }

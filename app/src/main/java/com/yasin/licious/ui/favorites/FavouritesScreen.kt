@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -25,13 +24,13 @@ import kotlin.LazyThreadSafetyMode.NONE
  * Created by Yasin on 26/4/20.
  * Shows favourite items based on server response
  */
-class FavouritesScreen :  Fragment() {
+class FavouritesScreen : Fragment() {
 
     @Inject lateinit var picasso: Picasso
     @Inject lateinit var favoritesViewModelFactory: FavoritesViewModelFactory
     private lateinit var favoritesViewModel: FavoritesViewModel
-    private lateinit var binding : ScreenFavouritesBinding
-    private val favoritesAdapter : FavoritesAdapter by lazy(NONE) {
+    private lateinit var binding: ScreenFavouritesBinding
+    private val favoritesAdapter: FavoritesAdapter by lazy(NONE) {
         FavoritesAdapter(picasso)
     }
 
@@ -43,7 +42,8 @@ class FavouritesScreen :  Fragment() {
     }
 
     private fun configureViewModel() {
-        favoritesViewModel = ViewModelProvider(this, favoritesViewModelFactory)[FavoritesViewModel::class.java]
+        favoritesViewModel =
+            ViewModelProvider(this, favoritesViewModelFactory)[FavoritesViewModel::class.java]
     }
 
     private fun observeViewState() {
@@ -52,14 +52,14 @@ class FavouritesScreen :  Fragment() {
 
     private fun observeFavorites() {
         favoritesViewModel.favoritesViewState.observe(this, Observer {
-            when(it) {
+            when (it) {
                 is FavoriteViewState.Loading -> {
                     //show loading state
                 }
                 is FavoriteViewState.Success -> {
                     renderScreen(it)
                 }
-                is FavoriteViewState.Error ->{
+                is FavoriteViewState.Error -> {
                     //show error state
                 }
             }
@@ -68,7 +68,7 @@ class FavouritesScreen :  Fragment() {
 
     private fun renderScreen(viewState: FavoriteViewState.Success) {
         binding.tvInfoMessage.text = viewState.infoMessage
-        binding.tvInfoBadge.text = String.format("(%s)",viewState.badge)
+        binding.tvInfoBadge.text = String.format("(%s)", viewState.badge)
         favoritesAdapter.submitList(viewState.favorites)
         //set screen title via navController
         findNavController().currentDestination?.label = viewState.screenTitle
@@ -79,7 +79,7 @@ class FavouritesScreen :  Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = ScreenFavouritesBinding.inflate(inflater,container,false)
+        binding = ScreenFavouritesBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -107,7 +107,8 @@ class FavouritesScreen :  Fragment() {
         materialButton.backgroundTintList =
             ColorStateList.valueOf(requireContext().themeColor(R.attr.colorPrimary))
         materialButton.setTextColor(ColorStateList.valueOf(requireContext().themeColor(R.attr.colorOnPrimary)))
-        materialButton.strokeColor = ColorStateList.valueOf(requireContext().themeColor(R.attr.colorOnPrimary))
+        materialButton.strokeColor =
+            ColorStateList.valueOf(requireContext().themeColor(R.attr.colorOnPrimary))
     }
 
     private fun selectButton(materialButton: MaterialButton) {

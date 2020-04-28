@@ -11,7 +11,7 @@ import com.yasin.licious.dagger.MainComponent
  */
 class Licious : Application() {
 
-    val appComponent : MainComponent by lazy {
+    val appComponent: MainComponent by lazy {
         DaggerMainComponent
             .builder()
             .context(this.applicationContext)
@@ -19,10 +19,10 @@ class Licious : Application() {
     }
 
     companion object {
-        fun getApp(context: Context) : Licious {
+        fun getApp(context: Context): Licious {
             return context.applicationContext as Licious
         }
     }
 }
 
-fun Fragment.getAppComponent() : MainComponent = Licious.getApp(this.requireContext()).appComponent
+fun Fragment.getAppComponent(): MainComponent = Licious.getApp(this.requireContext()).appComponent

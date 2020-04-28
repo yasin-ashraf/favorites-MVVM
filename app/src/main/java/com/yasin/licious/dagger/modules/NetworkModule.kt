@@ -4,13 +4,10 @@ import android.content.Context
 import com.yasin.licious.dagger.AppScope
 import com.yasin.licious.dagger.ApplicationContext
 import com.yasin.licious.network.MockInterceptor
-
-import java.util.concurrent.TimeUnit
-
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by Yasin on 27/4/20.
@@ -20,7 +17,7 @@ class NetworkModule {
 
     @Provides
     @AppScope
-    fun loggingInterceptor(@ApplicationContext context : Context): MockInterceptor {
+    fun loggingInterceptor(@ApplicationContext context: Context): MockInterceptor {
         return MockInterceptor(context)
     }
 

@@ -21,6 +21,7 @@ interface MainComponent {
     @Component.Builder
     interface Builder {
         fun build(): MainComponent
+
         @BindsInstance
         fun context(@ApplicationContext context: Context): Builder
     }
