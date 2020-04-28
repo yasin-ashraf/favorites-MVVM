@@ -2,8 +2,8 @@
 
     <!--Custom Styles-->
 
-    <!--ActionBar Theme-->
-    <style name="Widget.Licious.Toolbar.TitleTextAppearance" parent="TextAppearance.MaterialComponents.Subtitle1">
-        <item name="android:layout_gravity">center</item>
+    <!--Selected Filter Button-->
+    <style name="Widget.Licious.MaterialButton.Selected" parent="Widget.MaterialComponents.Button.TextButton">
+
     </style>
 </resources>

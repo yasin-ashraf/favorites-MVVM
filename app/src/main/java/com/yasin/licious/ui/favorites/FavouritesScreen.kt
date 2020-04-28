@@ -1,18 +1,23 @@
 package com.yasin.licious.ui.favorites
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.button.MaterialButton
 import com.squareup.picasso.Picasso
+import com.yasin.licious.R
+import com.yasin.licious.data.utils.FILTER_ALL
+import com.yasin.licious.data.utils.FILTER_EXPRESS
 import com.yasin.licious.databinding.ScreenFavouritesBinding
 import com.yasin.licious.getAppComponent
-import com.yasin.licious.network.NetworkState
+import com.yasin.licious.ui.utils.themeColor
 import javax.inject.Inject
 import kotlin.LazyThreadSafetyMode.NONE
 
@@ -63,7 +68,7 @@ class FavouritesScreen :  Fragment() {
 
     private fun renderScreen(viewState: FavoriteViewState.Success) {
         binding.tvInfoMessage.text = viewState.infoMessage
-        binding.tvInfoBadge.text = viewState.badge
+        binding.tvInfoBadge.text = String.format("(%s)",viewState.badge)
         favoritesAdapter.submitList(viewState.favorites)
         //set screen title via navController
         findNavController().currentDestination?.label = viewState.screenTitle
@@ -86,7 +91,29 @@ class FavouritesScreen :  Fragment() {
 
     private fun init() {
         binding.rvFavorites.adapter = favoritesAdapter
-        binding.buttonAllSlots.setOnClickListener { favoritesViewModel.forceRefresh(true) }
+        binding.buttonAllSlots.setOnClickListener {
+            selectButton(binding.buttonAllSlots)
+            unSelectButton(binding.buttonExpress)
+            favoritesViewModel.filterFavorites(FILTER_ALL)
+        }
+        binding.buttonExpress.setOnClickListener {
+            selectButton(binding.buttonExpress)
+            unSelectButton(binding.buttonAllSlots)
+            favoritesViewModel.filterFavorites(FILTER_EXPRESS)
+        }
+    }
+
+    private fun unSelectButton(materialButton: MaterialButton) {
+        materialButton.backgroundTintList =
+            ColorStateList.valueOf(requireContext().themeColor(R.attr.colorPrimary))
+        materialButton.setTextColor(ColorStateList.valueOf(requireContext().themeColor(R.attr.colorOnPrimary)))
+        materialButton.strokeColor = ColorStateList.valueOf(requireContext().themeColor(R.attr.colorOnPrimary))
+    }
+
+    private fun selectButton(materialButton: MaterialButton) {
+        materialButton.backgroundTintList =
+            ColorStateList.valueOf(requireContext().themeColor(R.attr.colorSecondary))
+        materialButton.setTextColor(ColorStateList.valueOf(requireContext().themeColor(R.attr.colorOnSecondary)))
     }
 
     private fun insetWindow() {

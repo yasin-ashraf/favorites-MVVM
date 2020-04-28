@@ -24,7 +24,6 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_all_slots"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="6dp"
@@ -33,15 +32,16 @@
                 android:elevation="0dp"
                 android:text="@string/all_available_slots"
                 android:textAllCaps="false"
-                android:textColor="?attr/colorOnPrimary"
+                android:textColor="?attr/colorOnSecondary"
+                app:backgroundTint="?attr/colorSecondary"
                 android:textSize="12sp"
                 app:cornerRadius="4dp"
                 app:rippleColor="?attr/colorOnPrimary"
-                app:strokeColor="?attr/colorOnPrimary" />
+                app:strokeColor="?attr/colorOnPrimary"
+                app:strokeWidth="1dp"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_express"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="6dp"
@@ -50,11 +50,11 @@
                 android:elevation="0dp"
                 android:text="@string/today_in_minutes"
                 android:textAllCaps="false"
-                android:textColor="?attr/colorOnSecondary"
+                android:textColor="?attr/colorSecondary"
                 android:textSize="12sp"
-                app:backgroundTint="?attr/colorSecondary"
                 app:cornerRadius="4dp"
-                app:strokeColor="?attr/colorOnPrimary" />
+                app:strokeColor="?attr/colorOnPrimary"
+                app:strokeWidth="1dp"/>
 
         </LinearLayout>
 
