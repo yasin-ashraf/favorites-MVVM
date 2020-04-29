@@ -12,5 +12,6 @@ data class UiProduct(
     val actualPrice: Double,
     val offerPrice: Double,
     val image: String,
-    val deliveryType: String
+    val deliveryType: String,
+    val stockUnits : Int
 )

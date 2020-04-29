@@ -89,7 +89,8 @@ class FavoritesViewModel @Inject constructor(
             offerPrice = 0.0,
             image = this.productMerchantdising.prImage,
             deliveryType = this.productMerchantdising.productDeliveryType,
-            netWt = this.productMaster.net
+            netWt = this.productMaster.net,
+            stockUnits = productInventory.stockUnits
         )
     }
 }

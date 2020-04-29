@@ -4,6 +4,7 @@ import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -50,6 +51,7 @@ class ProductViewHolder(private val binding: FavoriteListItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     private val ZERO: Double = 0.0
+    private var counter : Int = 0
 
     fun bind(product: UiProduct, picasso: Picasso) {
         binding.tvActualPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
@@ -68,5 +70,27 @@ class ProductViewHolder(private val binding: FavoriteListItemBinding) :
             .fit()
             .centerCrop()
             .into(binding.ivItem)
+
+        //button click listener
+        binding.buttonAddToCart.setOnClickListener {
+            counter = 1
+            binding.tvCount.text = counter.toString()
+            binding.flipperButton.displayedChild = 1
+        }
+
+        binding.ivAdd.setOnClickListener {
+            if(counter < product.stockUnits) {
+                counter++
+                binding.tvCount.text = counter.toString()
+            }else {
+                Toast.makeText(binding.buttonAddToCart.context, "Max limit reached!!", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.ivRemove.setOnClickListener {
+            if(counter == 1) binding.flipperButton.displayedChild = 0
+            counter--
+            binding.tvCount.text = counter.toString()
+        }
     }
 }

@@ -52,7 +52,7 @@
         android:textColor="?attr/colorSecondaryVariant"
         app:layout_constraintEnd_toEndOf="@id/guideline_centre"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/button_add_to_cart"
+        app:layout_constraintTop_toTopOf="@id/flipper_button"
         tools:text="Net wt. 500gm" />
 
     <TextView
@@ -68,7 +68,7 @@
         app:autoSizeMinTextSize="12sp"
         app:autoSizeTextType="uniform"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/button_add_to_cart"
+        app:layout_constraintBottom_toBottomOf="@id/flipper_button"
         tools:text="\u20B9 260" />
 
     <TextView
@@ -85,27 +85,68 @@
         android:textColor="?attr/colorSecondaryVariant"
         app:layout_constraintStart_toEndOf="@id/tv_offer_price"
         app:layout_constraintEnd_toEndOf="@id/guideline_centre"
-        app:layout_constraintBottom_toBottomOf="@id/button_add_to_cart"
+        app:layout_constraintBottom_toBottomOf="@id/flipper_button"
         tools:text="\u20B9 260" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_add_to_cart"
+    <ViewFlipper
+        android:id="@+id/flipper_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:includeFontPadding="false"
-        android:lines="1"
-        android:minHeight="50dp"
-        android:text="@string/add_to_cart"
-        android:textAllCaps="true"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
-        android:textColor="?attr/colorOnError"
-        app:autoSizeMaxTextSize="18sp"
-        app:autoSizeMinTextSize="10sp"
-        app:autoSizeTextType="uniform"
-        app:backgroundTint="?attr/colorError"
-        app:elevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/guideline_centre"
-        app:layout_constraintTop_toBottomOf="@id/tv_product_name" />
+        app:layout_constraintTop_toBottomOf="@id/tv_product_name">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_add_to_cart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:lines="1"
+            android:minHeight="50dp"
+            android:text="@string/add_to_cart"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+            android:textColor="?attr/colorOnError"
+            app:autoSizeMaxTextSize="18sp"
+            app:autoSizeMinTextSize="10sp"
+            app:autoSizeTextType="uniform"
+            app:backgroundTint="?attr/colorError"
+            app:elevation="0dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <ImageView
+                android:id="@+id/iv_remove"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_remove"
+                android:padding="5dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:id="@+id/tv_count"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="1"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                android:textColor="?attr/colorSecondary"
+                android:layout_height="match_parent"/>
+
+            <ImageView
+                android:id="@+id/iv_add"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_add"
+                android:padding="5dp"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+    </ViewFlipper>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
